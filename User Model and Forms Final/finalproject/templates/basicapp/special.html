@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'basicapp/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+    <div class="jumbotron">
+    {% if user.is_superuser %}
+    	{% if users_list %}
+    	    {% for person in users_list %}
+    	        {{ person.user }} 
+    	        {{ person.portfolio_site }} <br>
+    	    {% endfor %}
+    	 {% else %}
+    	     <h1>No user found</h1>
+    	{% endif %}
+    {% endif %}
+
+    <button id="about-btn"> Click Me - I'm Javascript on Speed</button>
+
+<p>This is a example</p>
+
+<p>This is another example</p>
+
+<script type="text/javascript">$(document).ready( function() {
+
+    $("#about-btn").click(function(){
+    	$('#about-btn').toggle('slow');
+    })
+});</script>
+    </div>
+
+{% endblock %}

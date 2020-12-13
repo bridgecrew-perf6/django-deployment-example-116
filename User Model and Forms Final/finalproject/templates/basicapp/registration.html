@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'basicapp/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="jumbotron">
+    {% if registered %}
+        <h1>Registration successful</h1>
+    {% else %}
+        <h1 id="reg_Text">Register Now!</h1>
+
+        {% load crispy_forms_tags %}
+
+        <form class = "reg_form"enctype="multipart/form-data" method="POST">
+        	{{ user_form|crispy }}
+        	{{ profile_form|crispy }}
+        	
+        	<input class="btn btn-primary" type="submit" value="Register now!">
+        	<input  class="btn btn-light" id="toggleButton" type="button" value="Close Form">
+
+        	{% csrf_token %}
+        </form>
+     {% endif %}
+</div>
+<script type="text/javascript">
+	
+    $(document).ready(function(){
+
+        $('#toggleButton').click(function(){
+
+            $('.reg_form').toggle('slow')
+            $('#reg_Text').text('Form Closed')
+
+        })
+
+    })
+
+
+
+
+</script>
+{% endblock %}
+
